@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
     });
   }
 
-  guessThatCapital('Argentina');
+  //guessThatCapital('Argentina');
 
   function listLanguages(region) {
     connection.query("SELECT Language FROM countrylanguage JOIN country ON countrylanguage.CountryCode = country.Code WHERE region = ?", [region], function(err, results, fields) {
@@ -22,7 +22,7 @@ const connection = mysql.createConnection({
   });
 }
 
-listLanguages('Caribbean');
+//listLanguages('Caribbean');
 
 function numberOfCities(language) {
   connection.query("SELECT COUNT(Name) FROM city JOIN countrylanguage ON city.CountryCode = countrylanguage.CountryCode WHERE Language = ?", [language], function(err, results, fields) {
@@ -30,4 +30,24 @@ function numberOfCities(language) {
 });
 }
 
-numberOfCities('Spanish')
+//numberOfCities('Spanish')
+
+function sameLangSameRegion(language, region) {
+  connection.query("SELECT Name FROM country JOIN countrylanguage ON country.Code = countrylanguage.CountryCode WHERE Language = ? AND Region = ?", [language, region], function(err, results, fields) {
+    if (results.length > 0) {
+      console.log(results)}
+      else {console.log('False')}
+});
+}
+
+//sameLangSameRegion('Spanish', 'Caribbean'); // shows results 
+//sameLangSameRegion('Japanese', 'Caribbean'); // shows False. 
+
+
+function listContinents() {
+  connection.query("SELECT country.Continent, COUNT(countrylanguage.Language) FROM country JOIN countrylanguage ON country.Code = countrylanguage.CountryCode", function(err, results, fields) {
+    console.log(results);
+});
+}
+
+listContinents();
