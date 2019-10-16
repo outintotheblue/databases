@@ -1,4 +1,4 @@
- SELECT * FROM city WHERE population > 8000000; 
+ SELECT Name FROM country WHERE population > 8000000; 
  SELECT * FROM country WHERE name LIKE '%land'; 
  SELECT * FROM city WHERE population > 500000 AND population < 1000000; 
  SELECT * FROM country WHERE Continent = 'Europe'; 

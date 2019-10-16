@@ -1,4 +1,4 @@
-
+// part 1 Week 2
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
@@ -45,9 +45,14 @@ function sameLangSameRegion(language, region) {
 
 
 function listContinents() {
-  connection.query("SELECT country.Continent, COUNT(countrylanguage.Language) FROM country JOIN countrylanguage ON country.Code = countrylanguage.CountryCode", function(err, results, fields) {
+  connection.query("SELECT Continent, COUNT(language) FROM country JOIN countrylanguage ON country.Code = countrylanguage.CountryCode", function(err, results, fields) {
     console.log(results);
 });
 }
 
 listContinents();
+
+
+// part 2 Week 2
+
+
