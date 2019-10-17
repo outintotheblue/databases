@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
     });
   }
 
-  //guessThatCapital('Argentina');
+guessThatCapital('Argentina');
 
   function listLanguages(region) {
     connection.query("SELECT Language FROM countrylanguage JOIN country ON countrylanguage.CountryCode = country.Code WHERE region = ?", [region], function(err, results, fields) {
@@ -22,7 +22,7 @@ const connection = mysql.createConnection({
   });
 }
 
-//listLanguages('Caribbean');
+listLanguages('Caribbean');
 
 function numberOfCities(language) {
   connection.query("SELECT COUNT(Name) FROM city JOIN countrylanguage ON city.CountryCode = countrylanguage.CountryCode WHERE Language = ?", [language], function(err, results, fields) {
@@ -30,7 +30,7 @@ function numberOfCities(language) {
 });
 }
 
-//numberOfCities('Spanish')
+numberOfCities('Spanish')
 
 function sameLangSameRegion(language, region) {
   connection.query("SELECT Name FROM country JOIN countrylanguage ON country.Code = countrylanguage.CountryCode WHERE Language = ? AND Region = ?", [language, region], function(err, results, fields) {
@@ -40,12 +40,12 @@ function sameLangSameRegion(language, region) {
 });
 }
 
-//sameLangSameRegion('Spanish', 'Caribbean'); // shows results 
-//sameLangSameRegion('Japanese', 'Caribbean'); // shows False. 
+sameLangSameRegion('Spanish', 'Caribbean'); // shows results 
+sameLangSameRegion('Japanese', 'Caribbean'); // shows False. 
 
 
 function listContinents() {
-  connection.query("SELECT Continent, COUNT(language) FROM country JOIN countrylanguage ON country.Code = countrylanguage.CountryCode", function(err, results, fields) {
+  connection.query("SELECT Continent, COUNT(language) FROM country a, countrylanguage b where a.Code = b.CountryCode GROUP BY a.continent", function(err, results, fields) {
     console.log(results);
 });
 }
@@ -56,3 +56,8 @@ listContinents();
 // part 2 Week 2
 
 
+function triggerMe() {
+  connection.query("CREATE TRIGGER notifyMe ON countrylanguage AFTER INSERT on", function(err, results, fields) {
+    console.log(results);
+});
+}
