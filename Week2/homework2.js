@@ -53,11 +53,3 @@ function listContinents() {
 listContinents();
 
 
-// part 2 Week 2
-
-
-function triggerMe() {
-  connection.query("CREATE TRIGGER notifyMe ON countrylanguage AFTER INSERT on", function(err, results, fields) {
-    console.log(results);
-});
-}
