@@ -6,7 +6,7 @@ let action = process.argv[2];
 let listItem = process.argv[3];
 
 function helpMe() {
-  fs.readFile('help.txt', 'utf8', (err, help) => {
+  fs.readFile('readmehelp.md', 'utf8', (err, help) => {
     if (err) {
       console.log('Could not help you');
     }

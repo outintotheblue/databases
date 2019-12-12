@@ -11,17 +11,10 @@ class Todo {
   }
 
   async create(description) {
-    const todos = await this.read();
-
-    const todo = {
-      id:   uuid(),
-      done: false,
-
-      description
-    };
-
-    todos.push(todo);
-
+    connection.query("INSERT INTO  city.Name FROM city JOIN country ON city.ID = country.Capital WHERE country.Name = ?", [country], function(err, results, fields) {
+          console.log(results);
+      });
+    
     await this._save(todos);
 
     return todo;
