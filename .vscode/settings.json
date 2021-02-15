@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "todolist",
+            "dialect": "MySQL",
+            "name": "Todohomework",
+            "password": "hyfpassword",
+            "port": 3306,
+            "server": "localhost",
+            "username": "hyfuser"
+        }
+    ]
+}
